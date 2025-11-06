@@ -131,6 +131,19 @@ Visit `http://localhost:3000/test` to see the integration test page where you ca
 - See cart contents
 - Complete checkout with a simple form
 
+## 📸 Demo
+
+### Application Screenshots
+![Screenshot 1](frontend/public/images/Screenshot%202025-11-06%20204005.png)
+![Screenshot 2](frontend/public/images/Screenshot%202025-11-06%20222824.png)
+![Screenshot 3](frontend/public/images/Screenshot%202025-11-06%20225156.png)
+
+### Demo Video
+
+[▶️ Watch Demo Video ](https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing)
+
+*Note: Click to watch the application in action on Google Drive*
+
 ## 🌟 Features
 
 ### User Features
@@ -145,21 +158,6 @@ Visit `http://localhost:3000/test` to see the integration test page where you ca
 - **Product Management**: Create, read, update, and delete products
 - **User Management**: View and manage user accounts
 - **Order Management**: View and process customer orders
-
-## 📸 Demo
-
-### Application Screenshots
-![Screenshot 1](frontend/public/images/Screenshot%202025-11-06%20204005.png)
-![Screenshot 2](frontend/public/images/Screenshot%202025-11-06%20222824.png)
-![Screenshot 3](frontend/public/images/Screenshot%202025-11-06%20225156.png)
-
-### Demo Video
-
-[▶️ Watch Demo Video (71MB)](https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing)
-
-*Note: Click to watch the application in action on Google Drive*
-
-*Note: Download and play the video to see the application in action.*
 
 ## 🛠️ Technology Stack
 
