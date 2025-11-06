@@ -4,6 +4,43 @@
 
 A modern, responsive e-commerce application built with React, Redux, and Firebase. This application allows users to browse products, add items to their cart, and complete purchases with a streamlined checkout process.
 
+## 📋 Full Stack Coding Assignment: Mock E-Com Cart
+
+### Overview
+Build a basic full-stack shopping cart app for Vibe Commerce screening. Handle add/remove items, totals, & mock checkout (no real payments). Tests UI, API, DB integration for e-com flows.
+
+### Tech Stack
+- **Frontend**: React
+- **Backend**: Node/Express
+- **Database**: MongoDB/SQLite
+- **API**: REST APIs
+- **Deployment**: GitHub (no hosting)
+
+### Requirements
+
+#### Backend APIs
+- `GET /api/products`: 5-10 mock items (id, name, price)
+- `POST /api/cart`: Add {productId, qty}
+- `DELETE /api/cart/:id`: Remove item
+- `GET /api/cart`: Get cart + total
+- `POST /api/checkout`: {cartItems} → mock receipt (total, timestamp)
+
+#### Frontend (React)
+- Products grid w/ "Add to Cart"
+- Cart view: Items/qty/total; remove/update buttons
+- Checkout form (name/email); submit → receipt modal
+- Responsive design
+
+#### Bonus Features
+- DB persistence (mock user)
+- Error handling
+- Fake Store API integration
+
+#### Deliverables
+GitHub repo (/backend, /frontend, README w/ setup/screenshots/explain)
+
+---
+
 ## 🌟 Features
 
 ### User Features
@@ -27,11 +64,9 @@ A modern, responsive e-commerce application built with React, Redux, and Firebas
 ![Screenshot 3](public/images/Screenshot%202025-11-06%20225156.png)
 
 ### Demo Video
-https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing
+[Download Demo Video (71MB)](https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing)
 
 *Note: Download and play the video to see the application in action.*
-
-[Download Demo Video (71MB)](public/images/Demo%20Live.mp4)
 
 ## 🛠️ Technology Stack
 
