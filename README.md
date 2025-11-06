@@ -154,7 +154,10 @@ Visit `http://localhost:3000/test` to see the integration test page where you ca
 ![Screenshot 3](frontend/public/images/Screenshot%202025-11-06%20225156.png)
 
 ### Demo Video
-[Download Demo Video (71MB)](https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing)
+
+[▶️ Watch Demo Video (71MB)](https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing)
+
+*Note: Click to watch the application in action on Google Drive*
 
 *Note: Download and play the video to see the application in action.*
 
