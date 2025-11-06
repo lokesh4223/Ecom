@@ -27,7 +27,7 @@ A modern, responsive e-commerce application built with React, Redux, and Firebas
 ![Screenshot 3](public/images/Screenshot%202025-11-06%20225156.png)
 
 ### Demo Video
-https://user-images.githubusercontent.com/your-video-url-here
+https://drive.google.com/file/d/1K5jnjNZnOnCW4nQYla2Ho4KoUaUxI-HI/view?usp=sharing
 
 *Note: Download and play the video to see the application in action.*
 
