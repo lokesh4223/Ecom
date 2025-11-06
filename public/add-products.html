@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Sample Products</title>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
+        .loading {
+            background-color: #d9edf7;
+            color: #31708f;
+            border: 1px solid #bce8f1;
+        }
+        .progress {
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Add Sample Products to Firestore</h1>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click the "Add 40 Sample Products" button below</li>
+                <li>Wait for the process to complete (may take 1-2 minutes)</li>
+                <li>You'll see a success message when finished</li>
+                <li>Refresh your e-commerce app to see the products</li>
+            </ol>
+        </div>
+        
+        <button id="addProductsBtn">Add 40 Sample Products</button>
+        
+        <div class="progress" id="progressContainer" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="progressText">Adding products... 0/40</p>
+        </div>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Firebase configuration from your .env file
+        const firebaseConfig = {
+            apiKey: "AIzaSyDcnpjLoIKuLZ_6zLltNB5zVTGA1jzwEFw",
+            authDomain: "ecommerce-b415f.firebaseapp.com",
+            projectId: "ecommerce-b415f",
+            storageBucket: "ecommerce-b415f.firebasestorage.app",
+            messagingSenderId: "846104558543",
+            appId: "1:846104558543:web:f347daefcc0a2e1c5bf0ba"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        document.getElementById('addProductsBtn').addEventListener('click', addSampleProducts);
+
+        async function addSampleProducts() {
+            const button = document.getElementById('addProductsBtn');
+            const messageDiv = document.getElementById('message');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            button.disabled = true;
+            progressContainer.style.display = 'block';
+            messageDiv.className = 'message loading';
+            messageDiv.textContent = 'Initializing product addition...';
+            
+            const sampleProductTemplates = [
+                {
+                    name: 'Classic Aviator Sunglasses',
+                    brand: 'Ray-Ban',
+                    price: 14999,
+                    maxQuantity: 50,
+                    description: 'Classic aviator sunglasses with metal frame and green lenses. Perfect for sunny days and stylish look.',
+                    keywords: ['sunglasses', 'aviator', 'ray-ban', 'metal', 'green'],
+                    sizes: ['S', 'M', 'L'],
+                    isFeatured: true,
+                    isRecommended: true,
+                    availableColors: ['Gold', 'Silver', 'Black']
+                },
+                {
+                    name: 'Round Frame Glasses',
+                    brand: 'Quay',
+                    price: 8999,
+                    maxQuantity: 30,
+                    description: 'Trendy round frame glasses with unique design. Perfect for adding a vintage touch to your look.',
+                    keywords: ['glasses', 'round', 'quay', 'vintage', 'trendy'],
+                    sizes: ['S', 'M'],
+                    isFeatured: true,
+                    isRecommended: false,
+                    availableColors: ['Black', 'Tortoise', 'Gold']
+                },
+                {
+                    name: 'Sport Performance Glasses',
+                    brand: 'Oakley',
+                    price: 19999,
+                    maxQuantity: 25,
+                    description: 'High-performance sport glasses with anti-fog lenses and comfortable fit for all-day wear.',
+                    keywords: ['glasses', 'sport', 'oakley', 'performance', 'anti-fog'],
+                    sizes: ['S', 'M', 'L'],
+                    isFeatured: false,
+                    isRecommended: true,
+                    availableColors: ['Black', 'Red', 'Blue']
+                },
+                {
+                    name: 'Designer Reading Glasses',
+                    brand: 'Gucci',
+                    price: 29999,
+                    maxQuantity: 20,
+                    description: 'Luxury designer reading glasses with premium materials and elegant design.',
+                    keywords: ['glasses', 'reading', 'gucci', 'luxury', 'designer'],
+                    sizes: ['S', 'M'],
+                    isFeatured: true,
+                    isRecommended: true,
+                    availableColors: ['Gold', 'Black', 'Tortoise']
+                },
+                {
+                    name: 'Kids Sunglasses',
+                    brand: 'Babiators',
+                    price: 4999,
+                    maxQuantity: 40,
+                    description: 'Fun and durable sunglasses designed specifically for kids with UV protection.',
+                    keywords: ['sunglasses', 'kids', 'babiators', 'uv', 'protection'],
+                    sizes: ['S'],
+                    isFeatured: false,
+                    isRecommended: false,
+                    availableColors: ['Blue', 'Pink', 'Red', 'Green']
+                },
+                {
+                    name: 'Blue Light Blocking Glasses',
+                    brand: 'Felix Gray',
+                    price: 12999,
+                    maxQuantity: 35,
+                    description: 'Protect your eyes from blue light with these stylish glasses perfect for computer use.',
+                    keywords: ['glasses', 'blue light', 'felix gray', 'computer', 'protection'],
+                    sizes: ['S', 'M', 'L'],
+                    isFeatured: true,
+                    isRecommended: true,
+                    availableColors: ['Black', 'Silver', 'Blue']
+                },
+                {
+                    name: 'Cat Eye Sunglasses',
+                    brand: 'Quay',
+                    price: 7999,
+                    maxQuantity: 30,
+                    description: 'Stylish cat eye sunglasses with UV protection and comfortable fit.',
+                    keywords: ['sunglasses', 'cat eye', 'quay', 'stylish', 'uv'],
+                    sizes: ['S', 'M'],
+                    isFeatured: true,
+                    isRecommended: false,
+                    availableColors: ['Black', 'Tortoise', 'Pink']
+                },
+                {
+                    name: 'Polarized Driving Glasses',
+                    brand: 'Maui Jim',
+                    price: 24999,
+                    maxQuantity: 25,
+                    description: 'Premium polarized glasses designed for driving with superior clarity and glare reduction.',
+                    keywords: ['glasses', 'polarized', 'maui jim', 'driving', 'premium'],
+                    sizes: ['S', 'M', 'L'],
+                    isFeatured: false,
+                    isRecommended: true,
+                    availableColors: ['Brown', 'Black', 'Green']
+                }
+            ];
+
+            // Generate 40 products from the templates
+            const products = [];
+            for (let i = 0; i < 40; i++) {
+                const template = sampleProductTemplates[i % sampleProductTemplates.length];
+                products.push({
+                    ...template,
+                    name: `${template.name} #${i + 1}`,
+                    dateAdded: new Date(Date.now() - Math.floor(Math.random() * 30 * 24 * 60 * 60 * 1000)).toISOString(),
+                    name_lower: `${template.name.toLowerCase()} #${i + 1}`
+                });
+            }
+
+            try {
+                // Add 40 products
+                let successCount = 0;
+                for (let i = 0; i < products.length; i++) {
+                    const product = products[i];
+                    const docRef = db.collection('products').doc();
+                    
+                    // Add image URLs
+                    const imageUrls = [
+                        '/static/salt-image-1.png',
+                        '/static/salt-image-2.png',
+                        '/static/salt-image-3.png',
+                        '/static/salt-image-4.png',
+                        '/static/salt-image-5.png',
+                        '/static/salt-image-7.png',
+                        '/static/salt-image-10.png'
+                    ];
+                    
+                    product.image = imageUrls[i % imageUrls.length];
+                    product.imageCollection = [{ id: docRef.id, url: imageUrls[i % imageUrls.length] }];
+                    
+                    // Add product to Firestore
+                    await docRef.set(product);
+                    successCount++;
+                    
+                    // Update progress
+                    const progress = Math.round((successCount / products.length) * 100);
+                    progressFill.style.width = progress + '%';
+                    progressText.textContent = `Adding products... ${successCount}/${products.length}`;
+                    
+                    console.log(`Added product: ${product.name}`);
+                }
+                
+                messageDiv.className = 'message success';
+                messageDiv.innerHTML = `
+                    <h3>✅ Success!</h3>
+                    <p>Successfully added ${successCount} sample products to Firestore.</p>
+                    <p><strong>Next steps:</strong></p>
+                    <ol>
+                        <li>Refresh your e-commerce application</li>
+                        <li>You should now see products on the home page and shop page</li>
+                        <li>Prices are displayed in Indian Rupees (₹)</li>
+                    </ol>
+                `;
+            } catch (error) {
+                console.error('Error adding products:', error);
+                messageDiv.className = 'message error';
+                messageDiv.innerHTML = `
+                    <h3>❌ Error</h3>
+                    <p>Failed to add products: ${error.message}</p>
+                    <p><strong>Troubleshooting:</strong></p>
+                    <ul>
+                        <li>Check your internet connection</li>
+                        <li>Verify your Firebase configuration</li>
+                        <li>Make sure Firestore rules allow writes</li>
+                        <li>Try again or contact support</li>
+                    </ul>
+                `;
+            } finally {
+                button.disabled = false;
+                progressContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

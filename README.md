@@ -1,6 +1,6 @@
-# Salinaka - E-commerce React Application
+# E-commerce React Application
 
-![Salinaka E-commerce](public/static/banner.jpg)
+![E-commerce](public/static/banner.jpg)
 
 A modern, responsive e-commerce application built with React, Redux, and Firebase. This application allows users to browse products, add items to their cart, and complete purchases with a streamlined checkout process.
 
@@ -18,6 +18,20 @@ A modern, responsive e-commerce application built with React, Redux, and Firebas
 - **Product Management**: Create, read, update, and delete products
 - **User Management**: View and manage user accounts
 - **Order Management**: View and process customer orders
+
+## 📸 Demo
+
+### Application Screenshots
+![Screenshot 1](public/images/Screenshot%202025-11-06%20204005.png)
+![Screenshot 2](public/images/Screenshot%202025-11-06%20222824.png)
+![Screenshot 3](public/images/Screenshot%202025-11-06%20225156.png)
+
+### Demo Video
+https://user-images.githubusercontent.com/your-video-url-here
+
+*Note: Download and play the video to see the application in action.*
+
+[Download Demo Video (71MB)](public/images/Demo%20Live.mp4)
 
 ## 🛠️ Technology Stack
 
@@ -59,13 +73,13 @@ src/
 ├── services/            # Firebase configuration
 ├── styles/              # Sass stylesheets
 └── views/               # Page-level components
-    ├── account/         # User account pages
-    ├── admin/           # Admin dashboard
-    ├── auth/            # Authentication pages
-    ├── checkout/        # Checkout process
-    ├── home/            # Homepage
-    ├── shop/            # Product browsing
-    └── ...              # Other pages
+   ├── account/         # User account pages
+   ├── admin/           # Admin dashboard
+   ├── auth/            # Authentication pages
+   ├── checkout/        # Checkout process
+   ├── home/            # Homepage
+   ├── shop/            # Product browsing
+   └── ...              # Other pages
 ```
 
 ## 🚀 Getting Started
